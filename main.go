@@ -17,16 +17,15 @@ type Sensor struct
 }
 
 func getMean (arr map[string]float64) float64 {
-    sum := 0.0
+	sum := 0.0
 	for  _, value := range arr {
 		sum += value
-	 }
-    avg := (float64(sum)) / (float64(len(arr)))
+	}
+	avg := (float64(sum)) / (float64(len(arr)))
 	return avg;
 } 
 
 func getThermometerPrecision(mean float64, reference float64, stddev float64) string {
-
 	if(mean > (reference + 0.5) || mean < (reference - 0.5)){
 		return "precise";
 	}
@@ -76,7 +75,6 @@ func getSensorQuality(sensors []Sensor, temperature float64, humidity float64){
 }
 
 func parseThermometerInput(input *os.File) (sensors []Sensor, temperature float64, humidity float64){
-
 	scanner := bufio.NewScanner(input)	
 	var currSensor *Sensor;
 	var err error;
@@ -118,7 +116,6 @@ func throwException(errorMessage string){
 }
 
 func main() {
-
 	var sensors, temperature, humidity = parseThermometerInput(os.Stdin);
 	getSensorQuality(sensors, temperature, humidity);
 }
